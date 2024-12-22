@@ -1,0 +1,77 @@
+[
+	{
+		"max_gen": 809,
+		"max_fitness": 691.0,
+		"max_size": 214,
+		"best_candidate": "{(23, 20): True, (27, 29): True, (27, 27): True, (27, 25): True, (26, 29): True, (26, 26): True, (28, 29): True, (23, 30): True, (24, 30): True}",
+		"fitness_sample": 691.0
+	},
+	{
+		"max_gen": 335,
+		"max_fitness": 298.8,
+		"max_size": 149,
+		"best_candidate": "{(25, 28): True, (26, 27): True, (20, 23): True, (27, 27): True, (23, 26): True, (22, 24): True, (28, 20): True, (29, 29): True, (25, 27): True}",
+		"fitness_sample": 298.7999999999997
+	},
+	{
+		"max_gen": 312,
+		"max_fitness": 280.40000000000003,
+		"max_size": 149,
+		"best_candidate": "{(28, 23): True, (29, 22): True, (30, 25): True, (24, 25): True, (23, 26): True, (23, 27): True, (22, 27): True, (24, 22): True, (24, 27): True}",
+		"fitness_sample": 280.3999999999998
+	},
+	{
+		"max_gen": 775,
+		"max_fitness": 651.8,
+		"max_size": 7,
+		"best_candidate": "{(25, 30): True, (24, 26): True, (27, 25): True, (24, 28): True, (27, 24): True, (21, 25): True, (25, 27): True, (28, 24): True, (26, 26): True}"
+	},
+	{
+		"max_gen": 616,
+		"max_fitness": 530.8,
+		"max_size": 201,
+		"best_candidate": "{(25, 20): True, (23, 24): True, (26, 21): True, (28, 28): True, (27, 22): True, (27, 26): True, (27, 20): True, (26, 20): True}"
+	},
+	{
+		"max_gen": 323,
+		"max_fitness": 278.40000000000003,
+		"max_size": 95,
+		"best_candidate": "{(25, 26): True, (24, 25): True, (24, 30): True, (23, 24): True, (25, 27): True, (23, 27): True, (22, 25): True, (22, 26): True, (24, 24): True, (29, 29): True}"
+	},
+	{
+		"max_gen": 479,
+		"max_fitness": 420.80000000000007,
+		"max_size": 183,
+		"best_candidate": "{(26, 24): True, (25, 24): True, (26, 27): True, (25, 21): True, (25, 27): True, (24, 22): True, (27, 25): True, (23, 24): True}"
+	},
+	{
+		"max_gen": 802,
+		"max_fitness": 679.4,
+		"max_size": 7,
+		"best_candidate": "{(22, 23): True, (29, 29): True, (28, 21): True, (23, 24): True, (28, 24): True, (28, 22): True, (28, 23): True, (28, 20): True, (26, 24): True}"
+	},
+	{
+		"max_gen": 523,
+		"max_fitness": 462.80000000000007,
+		"max_size": 217,
+		"best_candidate": "{(29, 25): True, (20, 24): True, (27, 22): True, (26, 21): True, (26, 20): True, (26, 29): True, (26, 22): True, (24, 20): True, (24, 22): True, (20, 27): True, (28, 29): True}"
+	},
+	{
+		"max_gen": 337,
+		"max_fitness": 299.8,
+		"max_size": 201,
+		"best_candidate": "{(21, 27): True, (20, 29): True, (22, 26): True, (21, 20): True, (23, 26): True, (24, 27): True, (24, 26): True, (25, 23): True, (19, 29): True}"
+	},
+	{
+		"max_gen": 483,
+		"max_fitness": 421.40000000000003,
+		"max_size": 201,
+		"best_candidate": "{(24, 26): True, (28, 22): True, (23, 25): True, (23, 26): True, (24, 22): True, (29, 24): True, (23, 23): True, (29, 26): True, (21, 25): True, (25, 23): True}"
+	},
+	{
+		"max_gen": 477,
+		"max_fitness": 419.20000000000005,
+		"max_size": 247,
+		"best_candidate": "{(22, 25): True, (24, 20): True, (27, 30): True, (22, 27): True, (28, 24): True, (26, 23): True, (23, 23): True, (21, 25): True, (21, 22): True, (22, 26): True, (21, 24): True}"
+	}
+]
