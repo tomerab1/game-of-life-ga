@@ -110,6 +110,7 @@ class UI:
             )
 
     def update_grid(self, new_grid: Grid):
+        print("update called")
         self.grid = new_grid
         self.update_canvas()
 
