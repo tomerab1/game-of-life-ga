@@ -2,4 +2,10 @@ class Config:
     MAX_GRID_SIZE = 50
     MAX_CELLS = 10
     MAX_ITERATIONS = 2000
-    
+
+    # GA parameters
+    TOURNAMENT_SIZE = 3
+    INITIAL_MUTATION_RATE = 0.01
+    MAX_MUTATION_RATE = 0.5
+    ELITISM_COUNT = 2
+    CROSSOVER_RATE = 0.85
