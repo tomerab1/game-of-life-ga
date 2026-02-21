@@ -5,57 +5,13 @@ from config import Config
 
 
 class UI:
-    """
-    A class to represent the User Interface for the Game of Life.
-    Attributes:
-    -----------
-    master : tk.Tk
-        The main window of the application.
-    grid : Grid
-        The initial grid state for the Game of Life.
-    configs : list, optional
-        A list of configurations for different grid states (default is None).
-    cell_size : int
-        The size of each cell in the grid (default is 10).
-    current_config_index : int
-        The index of the current configuration being displayed (default is 0).
-    canvas : tk.Canvas
-        The canvas widget to draw the grid.
-    start_stop_button : tk.Button
-        The button to start or stop the simulation.
-    rewind_button : tk.Button
-        The button to rewind the simulation to the initial state.
-    prev_button : tk.Button
-        The button to show the previous configuration (if configs are provided).
-    next_button : tk.Button
-        The button to show the next configuration (if configs are provided).
-    info_label : tk.Label
-        The label to display additional information about the current configuration.
-    simulation_running : bool
-        A flag to indicate whether the simulation is running (default is False).
-    iteration : int
-        The current iteration of the simulation (default is 0).
-    Methods:
-    --------
-    update_canvas():
-        Clears and redraws the grid on the canvas.
-    update_grid(new_grid: Grid):
-        Updates the grid with a new state and redraws the canvas.
-    update_info():
-        Updates the information label with details about the current configuration.
-    toggle_simulation():
-        Starts or stops the simulation.
-    rewind_simulation():
-        Rewinds the simulation to the initial grid state.
-    run_game_of_life():
-        Runs the Game of Life simulation, updating the grid state iteratively.
-    show_previous_config():
-        Displays the previous configuration from the configs list.
-    show_next_config():
-        Displays the next configuration from the configs list.
-    load_current_config():
-        Loads the current configuration and resets the grid and simulation state.
-    """
+    SPEED_PRESETS = {
+        "Slow": 200,
+        "Normal": 60,
+        "Fast": 16,
+        "Ludicrous": 1,
+    }
+
     def __init__(self, master, grid: Grid, configs=None):
         self.master = master
         self.master.title("Game of Life")
@@ -64,6 +20,7 @@ class UI:
         self.cell_size = 10
         self.configs = configs or []
         self.current_config_index = 0
+        self.speed = self.SPEED_PRESETS["Normal"]
 
         # Create canvas with background color
         self.canvas = tk.Canvas(
@@ -74,18 +31,39 @@ class UI:
         )
         self.canvas.pack()
 
-        # Buttons
-        self.start_stop_button = tk.Button(self.master, text="Start", command=self.toggle_simulation)
-        self.start_stop_button.pack()
+        # Control frame
+        control_frame = tk.Frame(self.master)
+        control_frame.pack()
 
-        self.rewind_button = tk.Button(self.master, text="Rewind", command=self.rewind_simulation)
-        self.rewind_button.pack()
+        self.start_stop_button = tk.Button(control_frame, text="Start", command=self.toggle_simulation)
+        self.start_stop_button.pack(side=tk.LEFT, padx=4)
+
+        self.rewind_button = tk.Button(control_frame, text="Rewind", command=self.rewind_simulation)
+        self.rewind_button.pack(side=tk.LEFT, padx=4)
+
+        # Speed selector
+        speed_frame = tk.Frame(self.master)
+        speed_frame.pack()
+
+        tk.Label(speed_frame, text="Speed:").pack(side=tk.LEFT)
+        self.speed_var = tk.StringVar(value="Normal")
+        for name in self.SPEED_PRESETS:
+            tk.Radiobutton(
+                speed_frame,
+                text=name,
+                variable=self.speed_var,
+                value=name,
+                command=self._on_speed_change,
+            ).pack(side=tk.LEFT)
 
         if self.configs:
-            self.prev_button = tk.Button(self.master, text="Previous Config", command=self.show_previous_config)
+            nav_frame = tk.Frame(self.master)
+            nav_frame.pack()
+
+            self.prev_button = tk.Button(nav_frame, text="Previous Config", command=self.show_previous_config)
             self.prev_button.pack(side=tk.LEFT)
 
-            self.next_button = tk.Button(self.master, text="Next Config", command=self.show_next_config)
+            self.next_button = tk.Button(nav_frame, text="Next Config", command=self.show_next_config)
             self.next_button.pack(side=tk.RIGHT)
 
         # create labels to display additional information e.g max_gen, max_fitness etc.
@@ -97,6 +75,9 @@ class UI:
 
         self.update_canvas()
         self.update_info()
+
+    def _on_speed_change(self):
+        self.speed = self.SPEED_PRESETS[self.speed_var.get()]
 
     def update_canvas(self):
         self.canvas.delete("all")
@@ -110,7 +91,6 @@ class UI:
             )
 
     def update_grid(self, new_grid: Grid):
-        print("update called")
         self.grid = new_grid
         self.update_canvas()
 
@@ -137,7 +117,6 @@ class UI:
             self.run_game_of_life()
 
     def rewind_simulation(self):
-        # Reset the grid to its initial state and update the canvas
         self.simulation_running = False
         self.iteration = 0
         self.grid = self.initial_grid
@@ -151,7 +130,7 @@ class UI:
             self.master.title(f"Game of Life - Iteration {self.iteration}")
             self.grid = GameOfLife(self.grid).run()
             self.update_grid(self.grid)
-            self.master.after(60, self.run_game_of_life)
+            self.master.after(self.speed, self.run_game_of_life)
 
     def show_previous_config(self):
         if self.current_config_index > 0:
@@ -164,14 +143,12 @@ class UI:
             self.load_current_config()
 
     def load_current_config(self):
-        # Load the current configuration and reset the grid
         config = self.configs[self.current_config_index]
         self.grid = config["grid"]
         self.initial_grid = self.grid
         self.update_canvas()
         self.update_info()
 
-        # Stop the simulation and reset state
         self.simulation_running = False
         self.iteration = 0
         self.start_stop_button.config(text="Start")
